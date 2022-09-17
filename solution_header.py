@@ -5,7 +5,7 @@ from email import header
 
 class CsvReaderClass():
         try:
-            file = open("customersTest2.csv")
+            file = open("customers.csv")
             type(file)
             csvreader = csv.reader(file)
             header = []
@@ -49,22 +49,25 @@ class MaskerClass(CsvReaderClass):
 
     def makeAllMailsConfidential(self):
         try:
+            index=self.header.index("Email")
             for row in self.rows:
-                row[2]=self.makeConfidentialString(row[2])
+                row[index]=self.makeConfidentialString(row[index])
         except:
             print("Mail cannot be make confidential")
     
     def makeAllAdressesConfidential(self):
         try:
+            index=self.header.index("Location")
             for row in self.rows:
-                row[4]=self.makeConfidentialString(row[4])
+                row[index]=self.makeConfidentialString(row[index])
         except:
             print("Adress cannot be make confidential")
 
     def makeAllNamesConfidential(self):
         try:
+            index=self.header.index("Name")
             for row in self.rows:
-                row[1]=self.makeConfidentialString(row[1])
+                row[index]=self.makeConfidentialString(row[index])
         except:
             print("Names cannot be make confidential")
 
@@ -97,21 +100,22 @@ class MaskerClass(CsvReaderClass):
     def getAvarageAndChangeBillingColoum(self):
         result=0
         try:
+            index=self.header.index("Billing")
             rowCounter=len(self.rows)
             for row in self.rows:
                 try:
-                    if(row[3]=="" or row[3]==" "):
+                    if(row[index]=="" or row[index]==" "):
                         self.minBilling=0
-                    if(float(row[3])>self.maxBilling):
-                        self.maxBilling=float(row[3])
-                    if(float(row[3])<self.minBilling):
-                        self.minBilling=float(row[3])
+                    if(float(row[index])>self.maxBilling):
+                        self.maxBilling=float(row[index])
+                    if(float(row[index])<self.minBilling):
+                        self.minBilling=float(row[index])
 
-                    result+=float(row[3])
+                    result+=float(row[index])
                 except:
                     print("String-float conversion error")
             for row in self.rows:
-                row[3]=result/rowCounter
+                row[index]=result/rowCounter
             self.avarageBilling=result/rowCounter
         except:
             print("Billing cannot be calculated")
@@ -122,17 +126,18 @@ class MaskerClass(CsvReaderClass):
     def getNamesLenght(self):
         result=0
         try:
+            index=self.header.index("Name")
             rowCounter=len(self.rows)
             for row in self.rows:
                 try:
-                    if(row[1]=="" or row[1]==" "):
+                    if(row[index]=="" or row[index]==" "):
                         self.minNameLenght=0
-                    if(len(row[1])>self.maxNameLenght):
-                        self.maxNameLenght=len(row[1])
-                    if(len(row[1])<self.minNameLenght):
-                        self.minNameLenght=len(row[1])
+                    if(len(row[index])>self.maxNameLenght):
+                        self.maxNameLenght=len(row[index])
+                    if(len(row[index])<self.minNameLenght):
+                        self.minNameLenght=len(row[index])
 
-                    result+=len(row[1])
+                    result+=len(row[index])
                 except:
                     print("String's len function cannot run")
             self.avarageNameLenght=result/rowCounter
