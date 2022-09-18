@@ -5,8 +5,15 @@ from email import header
 
 class CsvReaderClass(object):
     def __init__(self):
+        self.filepath="customers.csv"
         try:
-            file = open("customers.csv")
+            print("Input file path: ",self.filepath)
+            self.filepath=sys.argv[1]
+        except:
+            print("Cannot get input dataset from console")
+        
+        try:
+            file = open(self.filepath)
             type(file)
             csvreader = csv.reader(file)
             self.header = []
