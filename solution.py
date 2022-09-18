@@ -2,7 +2,7 @@ from solution_header import *
 
 
 
-masker = MaskerClass();
+masker = MaskerClass()
 
 masker.challangeResult()
 
