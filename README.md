@@ -10,3 +10,5 @@ In unittest_solution.py, some basic unit tests can be run. If you want run these
 
 python3 unittest_solution.py -v
 
+
+you can see the extra part output in report.csv

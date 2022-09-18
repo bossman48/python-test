@@ -3,22 +3,24 @@ import sys
 import csv
 from email import header
 
-class CsvReaderClass():
+class CsvReaderClass(object):
+    def __init__(self):
         try:
-            file = open("customers.csv")
+            file = open("customersTest4.csv")
             type(file)
             csvreader = csv.reader(file)
-            header = []
-            header = next(csvreader)
-            rows = []
+            self.header = []
+            self.header = next(csvreader)
+            self.rows = []
             for row in csvreader:
-                rows.append(row)
+                self.rows.append(row)
                 
             file.close()
         except:
             print("Cannot open csv file or csv file is empty")
 
 class MaskerClass(CsvReaderClass):
+
     minNameLenght=sys.float_info.max
     maxNameLenght=0
     avarageNameLenght=0
