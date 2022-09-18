@@ -6,7 +6,7 @@ from email import header
 class CsvReaderClass(object):
     def __init__(self):
         try:
-            file = open("customersTest4.csv")
+            file = open("customers.csv")
             type(file)
             csvreader = csv.reader(file)
             self.header = []
